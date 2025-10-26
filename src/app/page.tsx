@@ -1,9 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { CONTRACT_ADDRESS, LINKS } from '@/lib/config';
 import MarketCapTracker from '@/components/MarketCapTracker';
+import MarketCapProgressBar from '@/components/MarketCapProgressBar';
+import SpookyLoader from '@/components/SpookyLoader';
 import { 
   FaSkull, 
   FaGhost, 
@@ -24,6 +26,9 @@ import {
 export default function Home() {
   const [copied, setCopied] = useState(false);
   const [currentSection, setCurrentSection] = useState(0);
+  const [showLoader, setShowLoader] = useState(true);
+  const [audioStarted, setAudioStarted] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const copyToClipboard = async () => {
     try {
@@ -35,6 +40,16 @@ export default function Home() {
     }
   };
 
+  const handleEnterGrave = () => {
+    setShowLoader(false);
+    setAudioStarted(true);
+    
+    // Start playing the audio
+    if (audioRef.current) {
+      audioRef.current.play().catch(console.error);
+    }
+  };
+
   // Auto-scroll through sections
   useEffect(() => {
     const interval = setInterval(() => {
@@ -43,8 +58,22 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  // Show loader first
+  if (showLoader) {
+    return <SpookyLoader onEnter={handleEnterGrave} />;
+  }
+
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
+      {/* Hidden audio element - persists across page changes */}
+      {audioStarted && (
+        <audio ref={audioRef} loop autoPlay>
+          <source src="/hallowensound.mp3" type="audio/mpeg" />
+        </audio>
+      )}
+      {/* Market Cap Progress Bar */}
+      <MarketCapProgressBar />
+      
       {/* Cinematic Background Layers */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
       
