@@ -531,7 +531,7 @@ export default function Home() {
                 <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-black font-bold text-lg">2</div>
                 <div>
                   <p className="text-orange-200 font-semibold mb-2">Go to X Settings</p>
-                  <p className="text-gray-300 text-sm">Navigate to your X profile and click "Edit profile"</p>
+                  <p className="text-gray-300 text-sm">Navigate to your X profile and click &quot;Edit profile&quot;</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
