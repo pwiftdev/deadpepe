@@ -4,8 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { CONTRACT_ADDRESS, LINKS } from '@/lib/config';
 import MarketCapTracker from '@/components/MarketCapTracker';
-import MarketCapProgressBar from '@/components/MarketCapProgressBar';
 import SpookyLoader from '@/components/SpookyLoader';
+import StickyHeader from '@/components/StickyHeader';
 import { 
   FaSkull, 
   FaGhost, 
@@ -65,17 +65,27 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
+      {/* Sticky Header */}
+      <StickyHeader />
+      
       {/* Hidden audio element - persists across page changes */}
       {audioStarted && (
         <audio ref={audioRef} loop autoPlay>
           <source src="/hallowensound.mp3" type="audio/mpeg" />
         </audio>
       )}
-      {/* Market Cap Progress Bar */}
-      <MarketCapProgressBar />
       
       {/* Cinematic Background Layers */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+      
+      {/* Halloween Orange Glows */}
+      <div className="absolute inset-0">
+        {/* Pumpkin glow effects */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-orange-400/15 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-yellow-500/10 rounded-full blur-xl animate-pulse delay-2000"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-orange-600/25 rounded-full blur-2xl animate-pulse delay-500"></div>
+      </div>
       
       {/* Animated Stars */}
       <div className="absolute inset-0 pointer-events-none">
@@ -93,36 +103,41 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Floating Death Elements */}
-      <div className="absolute inset-0 pointer-events-none opacity-30">
-        <FaSkull className="absolute top-1/5 left-1/6 w-6 h-6 text-white animate-bounce delay-300" />
-        <FaBone className="absolute top-2/3 right-1/6 w-8 h-8 text-gray-400 animate-pulse delay-700" />
-        <FaSkull className="absolute bottom-1/3 left-2/5 w-7 h-7 text-gray-300 animate-pulse delay-1000" />
-        <FaPlus className="absolute top-1/2 right-1/4 w-5 h-5 text-gray-500 animate-pulse delay-500" />
-        <FaStar className="absolute top-1/4 right-1/3 w-10 h-10 text-gray-600 animate-pulse delay-2000" />
+      {/* Floating Halloween Elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-40">
+        <FaSkull className="absolute top-1/5 left-1/6 w-6 h-6 text-orange-400 animate-bounce delay-300 drop-shadow-lg" />
+        <FaBone className="absolute top-2/3 right-1/6 w-8 h-8 text-orange-300 animate-pulse delay-700 drop-shadow-lg" />
+        <FaSkull className="absolute bottom-1/3 left-2/5 w-7 h-7 text-yellow-400 animate-pulse delay-1000 drop-shadow-lg" />
+        <FaPlus className="absolute top-1/2 right-1/4 w-5 h-5 text-orange-500 animate-pulse delay-500 drop-shadow-lg" />
+        <FaStar className="absolute top-1/4 right-1/3 w-10 h-10 text-orange-600 animate-pulse delay-2000 drop-shadow-lg" />
+        <FaFire className="absolute top-1/6 left-1/3 w-6 h-6 text-orange-500 animate-pulse delay-1500 drop-shadow-lg" />
+        <FaGhost className="absolute bottom-1/5 right-1/3 w-8 h-8 text-orange-300 animate-bounce delay-800 drop-shadow-lg" />
       </div>
 
-      {/* Ghostly Mist Effects */}
+      {/* Halloween Mist Effects */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-gray-800/10 to-transparent animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-transparent via-gray-800/10 to-transparent animate-pulse delay-1000"></div>
-        <div className="absolute top-1/3 left-0 w-full h-full bg-gradient-to-r from-transparent via-gray-700/5 to-transparent animate-pulse delay-2000"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-orange-900/10 to-transparent animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-transparent via-orange-800/15 to-transparent animate-pulse delay-1000"></div>
+        <div className="absolute top-1/3 left-0 w-full h-full bg-gradient-to-r from-transparent via-yellow-800/8 to-transparent animate-pulse delay-2000"></div>
+        <div className="absolute top-2/3 right-0 w-full h-full bg-gradient-to-l from-transparent via-orange-700/12 to-transparent animate-pulse delay-1500"></div>
       </div>
 
       {/* Section 1: Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center relative z-10 p-8">
+      <section className="min-h-screen flex flex-col items-center justify-center relative z-10 p-8 pt-24">
         <div className="text-center max-w-6xl mx-auto">
           {/* Dramatic Entrance Animation */}
           <div className="mb-16 relative flex justify-center">
             <div className="relative">
-              {/* Outer Glow Ring */}
-              <div className="absolute inset-0 bg-white/30 rounded-full blur-2xl animate-pulse scale-110"></div>
-              {/* Inner Glow Ring */}
-              <div className="absolute inset-0 bg-white/20 rounded-full blur-xl animate-pulse delay-500 scale-105"></div>
+              {/* Outer Pumpkin Glow Ring */}
+              <div className="absolute inset-0 bg-orange-500/40 rounded-full blur-2xl animate-pulse scale-110"></div>
+              {/* Inner Halloween Glow Ring */}
+              <div className="absolute inset-0 bg-yellow-400/30 rounded-full blur-xl animate-pulse delay-500 scale-105"></div>
+              {/* Additional Halloween Glow */}
+              <div className="absolute inset-0 bg-orange-600/20 rounded-full blur-3xl animate-pulse delay-1000 scale-125"></div>
               
-              {/* Floating Skull Top Right */}
+              {/* Floating Pumpkin Skull Top Right */}
               <div className="absolute -top-6 -right-6 z-20">
-                <FaSkull className="w-10 h-10 text-white animate-pulse drop-shadow-lg" />
+                <FaSkull className="w-10 h-10 text-orange-400 animate-pulse drop-shadow-lg" />
               </div>
               
               {/* Main Dead Pepe Image */}
@@ -131,70 +146,76 @@ export default function Home() {
                 alt="Dead Pepe"
                 width={350}
                 height={350}
-                className="relative z-10 rounded-full border-4 border-white/50 shadow-2xl shadow-white/40 hover:shadow-white/80 transition-all duration-700 hover:scale-105 grayscale hover:grayscale-0 drop-shadow-2xl"
+                className="relative z-10 rounded-full border-4 border-orange-500/60 shadow-2xl shadow-orange-500/40 hover:shadow-orange-500/80 transition-all duration-700 hover:scale-105 grayscale hover:grayscale-0 drop-shadow-2xl"
                 priority
               />
               
-              {/* Floating Bone Bottom Left */}
+              {/* Floating Halloween Bone Bottom Left */}
               <div className="absolute -bottom-6 -left-6 z-20">
-                <FaBone className="w-8 h-8 text-gray-400 animate-pulse delay-300 drop-shadow-lg" />
+                <FaBone className="w-8 h-8 text-orange-300 animate-pulse delay-300 drop-shadow-lg" />
               </div>
               
-              {/* Floating Elements Around Image */}
+              {/* Floating Halloween Elements Around Image */}
               <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 z-20">
-                <FaStar className="w-4 h-4 text-white animate-pulse delay-700" />
+                <FaStar className="w-4 h-4 text-yellow-400 animate-pulse delay-700 drop-shadow-lg" />
               </div>
               <div className="absolute -bottom-2 right-1/4 z-20">
-                <FaStar className="w-3 h-3 text-gray-300 animate-pulse delay-1000" />
+                <FaStar className="w-3 h-3 text-orange-300 animate-pulse delay-1000 drop-shadow-lg" />
+              </div>
+              <div className="absolute top-1/2 -left-8 z-20">
+                <FaFire className="w-5 h-5 text-orange-500 animate-pulse delay-500 drop-shadow-lg" />
+              </div>
+              <div className="absolute top-1/2 -right-8 z-20">
+                <FaGhost className="w-6 h-6 text-orange-400 animate-bounce delay-800 drop-shadow-lg" />
               </div>
             </div>
           </div>
 
-          {/* Main Title with Enhanced Effects */}
+          {/* Main Title with Halloween Effects */}
           <div className="mb-12">
-            <h1 className="text-9xl md:text-[12rem] font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-100 to-white animate-pulse drop-shadow-2xl">
+            <h1 className="text-9xl md:text-[12rem] font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-500 animate-pulse drop-shadow-2xl">
               $DEPE
             </h1>
             
-            {/* Subtitle with Better Spacing */}
+            {/* Subtitle with Halloween Spacing */}
             <div className="flex items-center justify-center gap-8 mb-12">
-              <FaSkull className="w-16 h-16 text-white animate-pulse drop-shadow-lg" />
-              <h2 className="text-5xl md:text-6xl font-bold text-gray-100 drop-shadow-lg">
+              <FaSkull className="w-16 h-16 text-orange-400 animate-pulse drop-shadow-lg" />
+              <h2 className="text-5xl md:text-6xl font-bold text-orange-200 drop-shadow-lg">
                 DEAD PEPE
               </h2>
-              <FaSkull className="w-16 h-16 text-white animate-pulse delay-500 drop-shadow-lg" />
+              <FaSkull className="w-16 h-16 text-orange-400 animate-pulse delay-500 drop-shadow-lg" />
             </div>
           </div>
 
-          {/* Enhanced Scroll Indicator */}
+          {/* Enhanced Halloween Scroll Indicator */}
           <div className="flex flex-col items-center gap-4 animate-bounce">
             <div className="flex flex-col items-center gap-2">
-              <FaArrowDown className="w-8 h-8 text-white drop-shadow-lg" />
-              <span className="text-lg text-gray-300 font-medium">Enter the crypt</span>
+              <FaArrowDown className="w-8 h-8 text-orange-400 drop-shadow-lg" />
+              <span className="text-lg text-orange-300 font-medium">Enter the crypt</span>
             </div>
-            <div className="w-1 h-16 bg-gradient-to-b from-white to-transparent opacity-50"></div>
+            <div className="w-1 h-16 bg-gradient-to-b from-orange-400 to-transparent opacity-60"></div>
           </div>
         </div>
       </section>
 
       {/* Section 2: Legend Section - BIG DESIGNER MODE */}
       <section className="min-h-screen flex flex-col items-center justify-center relative z-10 p-8 overflow-hidden">
-        {/* Cinematic Background Layers */}
+        {/* Halloween Background Layers */}
         <div className="absolute inset-0">
-          {/* Animated Grid Pattern */}
-          <div className="absolute inset-0 opacity-5">
+          {/* Animated Halloween Grid Pattern */}
+          <div className="absolute inset-0 opacity-8">
             <div className="grid grid-cols-12 grid-rows-8 h-full w-full">
               {[...Array(96)].map((_, i) => (
-                <div key={i} className="border border-white/10 animate-pulse" style={{animationDelay: `${i * 0.1}s`}}></div>
+                <div key={i} className="border border-orange-500/20 animate-pulse" style={{animationDelay: `${i * 0.1}s`}}></div>
               ))}
             </div>
           </div>
           
-          {/* Floating Particles */}
+          {/* Floating Halloween Particles */}
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+              className="absolute w-1 h-1 bg-orange-400 rounded-full animate-pulse"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -203,6 +224,10 @@ export default function Home() {
               }}
             />
           ))}
+          
+          {/* Additional Halloween Glow Effects */}
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-orange-500/10 rounded-full blur-2xl animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-yellow-500/8 rounded-full blur-xl animate-pulse delay-1000"></div>
         </div>
 
         <div className="max-w-8xl mx-auto w-full">
@@ -398,7 +423,139 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 4: Contract & Links Section */}
+      {/* Section 4: X Costume Section */}
+      <section className="min-h-screen flex flex-col items-center justify-center relative z-10 p-8">
+        {/* Halloween Background Effects */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Pumpkin glow effects */}
+          <div className="absolute top-1/4 left-1/6 w-80 h-80 bg-orange-500/15 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/5 w-64 h-64 bg-yellow-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-orange-600/12 rounded-full blur-2xl animate-pulse delay-500"></div>
+        </div>
+
+        <div className="w-full max-w-6xl text-center relative z-10">
+          {/* Header */}
+          <div className="mb-16">
+            <div className="flex items-center justify-center gap-6 mb-8">
+              <FaSkull className="w-12 h-12 text-orange-400 animate-pulse drop-shadow-2xl" />
+              <h3 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-500 animate-pulse drop-shadow-2xl">
+                WEAR THE $DEPE COSTUME
+              </h3>
+              <FaSkull className="w-12 h-12 text-orange-400 animate-pulse delay-500 drop-shadow-2xl" />
+            </div>
+            
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <FaTwitter className="w-8 h-8 text-orange-400 animate-pulse" />
+              <h4 className="text-3xl md:text-4xl font-bold text-orange-200 drop-shadow-lg">
+                ON X
+              </h4>
+              <FaTwitter className="w-8 h-8 text-orange-400 animate-pulse delay-300" />
+            </div>
+            
+            <p className="text-xl md:text-2xl text-orange-300 italic font-light">
+              Join the undead army and show your $DEPE pride
+            </p>
+          </div>
+
+          {/* Logo Display */}
+          <div className="mb-12 relative">
+            <div className="relative inline-block">
+              {/* Halloween glow effects around logo */}
+              <div className="absolute inset-0 bg-orange-500/30 rounded-full blur-2xl animate-pulse scale-110"></div>
+              <div className="absolute inset-0 bg-yellow-400/20 rounded-full blur-xl animate-pulse delay-500 scale-105"></div>
+              
+              <Image
+                src="/deadpepe.jpg"
+                alt="Dead Pepe Logo for X Profile"
+                width={300}
+                height={300}
+                className="relative z-10 rounded-full border-4 border-orange-500/60 shadow-2xl shadow-orange-500/40 hover:shadow-orange-500/80 transition-all duration-700 hover:scale-105 grayscale hover:grayscale-0 drop-shadow-2xl"
+                priority
+              />
+              
+              {/* Floating Halloween elements around logo */}
+              <div className="absolute -top-4 -left-4 z-20">
+                <FaStar className="w-6 h-6 text-orange-400 animate-pulse drop-shadow-lg" />
+              </div>
+              <div className="absolute -top-4 -right-4 z-20">
+                <FaFire className="w-6 h-6 text-orange-500 animate-pulse delay-300 drop-shadow-lg" />
+              </div>
+              <div className="absolute -bottom-4 -left-4 z-20">
+                <FaBone className="w-6 h-6 text-orange-300 animate-pulse delay-500 drop-shadow-lg" />
+              </div>
+              <div className="absolute -bottom-4 -right-4 z-20">
+                <FaGhost className="w-6 h-6 text-orange-400 animate-bounce delay-700 drop-shadow-lg" />
+              </div>
+            </div>
+          </div>
+
+          {/* Download Button */}
+          <div className="mb-12">
+            <button
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/deadpepe.jpg';
+                link.download = 'deadpepe-profile-picture.jpg';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
+              className="group relative px-12 py-6 bg-gradient-to-r from-orange-600 to-yellow-500 hover:from-orange-500 hover:to-yellow-400 text-black rounded-2xl transition-all duration-500 transform hover:scale-105 text-2xl font-bold border-2 border-orange-400 shadow-2xl shadow-orange-500/50 hover:shadow-orange-500/80 hover:animate-pulse"
+            >
+              {/* Button glow effect */}
+              <div className="absolute inset-0 bg-orange-400/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+              
+              {/* Button content */}
+              <div className="relative z-10 flex items-center gap-4">
+                <FaSkull className="w-8 h-8 group-hover:animate-spin" />
+                <span className="tracking-wider">
+                  DOWNLOAD PROFILE PICTURE
+                </span>
+                <FaSkull className="w-8 h-8 group-hover:animate-spin" />
+              </div>
+            </button>
+          </div>
+
+          {/* Instructions */}
+          <div className="bg-black/40 backdrop-blur-sm rounded-2xl border border-orange-500/30 p-8 shadow-2xl shadow-orange-500/20">
+            <h5 className="text-2xl font-bold text-orange-300 mb-6">How to Set Your X Profile Picture:</h5>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-black font-bold text-lg">1</div>
+                <div>
+                  <p className="text-orange-200 font-semibold mb-2">Download the Image</p>
+                  <p className="text-gray-300 text-sm">Click the download button above to save the Dead Pepe image to your device</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-black font-bold text-lg">2</div>
+                <div>
+                  <p className="text-orange-200 font-semibold mb-2">Go to X Settings</p>
+                  <p className="text-gray-300 text-sm">Navigate to your X profile and click "Edit profile"</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-black font-bold text-lg">3</div>
+                <div>
+                  <p className="text-orange-200 font-semibold mb-2">Upload & Save</p>
+                  <p className="text-gray-300 text-sm">Upload the Dead Pepe image and save your profile</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Decorative Bottom Element */}
+          <div className="mt-12 text-center">
+            <div className="inline-flex items-center gap-8">
+              <div className="w-16 h-px bg-gradient-to-r from-transparent to-orange-500/50"></div>
+              <FaSkull className="w-6 h-6 text-orange-400 animate-pulse" />
+              <div className="w-16 h-px bg-gradient-to-l from-transparent to-orange-500/50"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 5: Contract & Links Section */}
       <section className="min-h-screen flex flex-col items-center justify-center relative z-10 p-8">
         <div className="w-full max-w-4xl text-center">
           <div className="mb-12">
